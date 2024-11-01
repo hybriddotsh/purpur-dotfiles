@@ -1,0 +1,180 @@
+/*a bunch of CSS snippets by both me and a lot of talented people in CSS-snippets channel of vencord server (luv them all <3)*/
+/*custom font!!!! (minecraft); English only btw*/
+@font-face {
+  font-family: "Minecraft";
+  src: url("https://raw.githubusercontent.com/IdreesInc/Minecraft-Font/main/Minecraft.otf") format("opentype");
+}
+
+:root {
+  --font-primary: "Minecraft";
+}
+
+
+/* Make POS discord more usable with tiling WMs or non full size windows nya :3*/
+@media (max-width: 1100px) {
+  [class*="sidebar_"] {
+    width: 200px;
+
+    .vc-typing-indicator,
+    .vc-channelemojis-emoji,
+    [class*="guildIconV2Container_"] {
+      display: none;
+    }
+
+    [class*="containerDefault_"] [role="img"] {
+      display: none;
+    }
+  }
+  [class*="chat_"] [class*="membersWrap_"] {
+    display: none;
+  }
+}
+/*changing color folders*/
+@keyframes ShiftingFolders {    
+  0% { background-color: rgba(207, 36, 230, 0.4); }      
+  50% { background-color: rgba(86, 131, 255, 0.589); }    
+  100% { background-color: rgba(207, 36, 230, 0.4); }    
+}
+[class*=folderIconWrapper] {
+  animation: ShiftingFolders 100s infinite; /*duration of the gradient transition (shorter = faster)*/
+  transition: background-color 0.5s ease;
+}
+
+
+/* NUKES useless UI elements */
+/* shop button  */
+a[href="/shop"] {
+    display: none;
+}
+/*nitro button*/
+.channel_c91bad:nth-child(3) {
+  display: none;
+}
+/*app launcher*/
+[class*=channelAppLauncher_] {
+  display: none;
+}
+/*discover button*/
+[data-list-id="guildsnav"] [class^="footer"]:has(>[class^="gradient"]) {
+  display: none;
+}
+
+/*make DM page look bit better*/
+/*margin between DMs*/
+.privateChannelsHeaderContainer_c47fa9 {
+  margin-top: 4px;
+  padding-top: 13.5px;
+  height: 2rem;
+  margin-bottom: 10px;
+}
+/*margin between app icon and servers*/
+.listItem_c96c45:nth-child(3) {
+  margin-top: 0px;
+}
+
+/*make profile controls looks ElEgAnT and DeMuRe*/
+[class^=panels] > [class^=container] /*User area redesign*/
+{
+    height: unset !important; /*Height being dynamic is fine*/
+    align-items: unset !important; /*Don't need that*/
+    padding: 6px 8px !important; /*Let those boxes breathe*/
+    flex-direction: column-reverse !important; /*instead of going one next to the other, go stacked*/
+    gap: 2px !important; /*Again let them breathe*/
+}
+[class^=avatarWrapper] /*Change the user box*/
+{
+    margin-right: unset !important; /* Useless */
+    margin-left: unset !important; /* Useless */
+    padding-left: 4px !important; /* Make it slightly bigger for consistency with the right side */
+}
+
+[class^=container] > [class*=buttons] /*Change the quick actions*/
+{
+    justify-content: space-evenly !important; /*Let them breathe*/
+}
+
+/*removes text box in channels with no perms*/
+[class*=channelTextAreaDisabled] {
+  opacity: 0!important;
+  position: absolute!important;
+  height: 0px!important;
+  width: 0px!important;
+  z-index: 0!important;
+}
+
+/*normalizes header text to be the same size and font as everything else*/
+div[id^="message-content"] h1,div[id^="message-content"] h2,div[id^="message-content"] h3 {
+  font-size: 1em !important;
+  font-weight: normal !important;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  font-family: "Minecraft";
+}
+div[id^="message-content"] h1::before, div[id^="message-content"] h2::before, div[id^="message-content"] h3::before {
+  content: var(--header-override-prefix);
+  font-size: -small;
+}
+:root {
+  /*prefix to let you know if the text is a header*/
+  --header-override-prefix: "🔼 ";
+}
+
+/*makes replies look better*/
+[class^=focusLock]:has([class*=userProfileOuter])
+{
+    --custom-user-profile-width-full-size: min-content !important;
+    min-width: 600px !important;
+}
+[class^=botTagCompact], /* reorder tags in replies */
+[class^=repliedTextPreview], /* reorder message in replies */
+[class^=repliedTextContentTrailingIcon] /* reorder icon that can come after the message in replies */
+{
+    order: 1 !important; /* default order is 0 so putting it to 1 put it after */
+}
+
+/*in addition, adds '@' at the start of true username with showmeyourname plugin in replies*/
+.vc-smyn-suffix::before {
+  content: "(@";
+}
+
+/*some profile tweaks*/
+/*Brighter Status Text for Custom Profiles*/
+.custom-profile-theme [class^=statusBubble_] [class^=defaultColor_] {
+  color: var(--white-500);
+}
+/*Match Status Bubble Color with Profile Button Color for Custom Profiles*/
+.custom-profile-theme [class^=statusBubble_],
+.custom-profile-theme [class^=statusBubbleOuter_]:before,
+.custom-profile-theme [class^=statusBubbleOuter_]:after {
+  background-color: var(--profile-gradient-button-color);
+}
+
+/*makes server boost color gradient comply with the order of the alphabet mafia*/
+body {
+  --guild-boosting-blue: #fa6060, #ffa600, #ffee00;
+  --guild-boosting-purple: #48ff00, #0004ff, #a208e9;
+}
+
+/*makes discord look better too*/
+@import url('https://smolalli.github.io/Themes/MinimalMode/source.css') (max-width:150vh);
+@media (max-width:150vh) {
+  .expression-picker-chat-input-button:not(:last-child):not([class^=buttons]:has([class^=separator])>.expression-picker-chat-input-button:nth-last-child(2)), [aria-label="Send a gift"] {
+    display: none;
+  }
+}
+
+/*FUNNY GOOFY SNIPPETS*/
+
+/* Change vencord server icon back to pride one */
+[data-list-item-id="guildsnav___1015060230222131221"] /*server ID*/
+[class*=icon] {
+  content:url("https://i.imgur.com/tI2FHzd.png"); /*the icon*/
+}
+
+/*enabling this lets you edit/delete anything on your screen on discord*/
+/*will very likely make discord unusable*/
+/*be careful*/
+
+/* body {
+    -webkit-user-modify: read-write;
+} */
